@@ -56,6 +56,13 @@ function listPersonsController($scope, personService) {
             "apellido": 'Ocampo Salazar',
             "edad": 30,
             "email": 'daugos@gmail.com'
+        },
+        {
+            "cedula": '10245359',
+            "nombre": 'Carlos Alberto',
+            "apellido": 'Arias Briñez',
+            "edad": 30,
+            "email": 'carlos.arias@gmail.com'
         }],
         sort: {
             predicate: 'cedula',
