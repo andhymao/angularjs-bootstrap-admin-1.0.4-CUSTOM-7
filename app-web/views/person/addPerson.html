@@ -1,0 +1,171 @@
+<div id="page-wrapper">
+    
+    <div class="container-fluid">
+        
+        <!-- Page Heading -->
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header"> Add Person </h1>
+                <ol class="breadcrumb">
+                    <li>
+                        <i class="fa fa-dashboard"></i>  
+                        <a ng-href="#/">Dashboard</a>
+                    </li>
+                    <li class="active">
+                        <i class="fa fa-edit"></i> Add Person
+                    </li>
+                </ol>
+            </div>
+        </div>
+        
+        <!-- Alert -->
+        <div class="alert alert-info alert-dismissible" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <strong>Info!</strong> Please insert info into form fields!!!
+        </div>
+        
+        <!-- Progress Bar -->
+        <div class="progress">
+            <div class="progress-bar progress-bar-info progress-bar-striped active" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 45%">
+                <span class="sr-only">45% Complete</span>
+            </div>
+        </div>
+        
+        <!-- Controller -->
+        <div class="row" ng-controller="AddPersonCtrl">
+            
+            <!-- Form -->
+            <form name="personForm" ng-submit="addPerson(Person)">
+            
+                <!-- Column 1 -->
+                <div class="col-lg-6">
+
+                    <!-- Cédula -->
+                    <div class="form-group" ng-class="{'has-success':!personForm.cedula.$invalid, 'has-error':personForm.cedula.$invalid && personForm.cedula.$touched}">
+                        <label class="control-label" for="cedula">Cédula</label>
+                        <div class="input-group">
+                            <div class="input-group-addon">
+                                <i class="glyphicon glyphicon-asterisk"></i>
+                            </div>
+                            <input class="form-control" name="cedula" type="text" placeholder="Cédula" ng-model="Person.cedula" ng-required="true" minlength="1" maxlength="10">
+                            <span class="form-control-feedback" ng-class="{'glyphicon glyphicon-ok':!personForm.cedula.$invalid, 'glyphicon glyphicon-remove':personForm.cedula.$invalid && personForm.cedula.$touched}"></span>
+                        </div>
+                        <p class="help-block">Digite el número de su cédula</p>
+                    </div>
+
+                    <!-- Nombre -->
+                    <div class="form-group" ng-class="{'has-success':!personForm.nombre.$invalid, 'has-error':personForm.nombre.$invalid && personForm.nombre.$touched}">
+                        <label class="control-label" for="cedula">Nombre</label>
+                        <div class="input-group">
+                            <div class="input-group-addon">
+                                <i class="glyphicon glyphicon-user"></i>
+                            </div>
+                            <input class="form-control" name="nombre" type="text" placeholder="Nombre" ng-model="Person.nombre" ng-required="true">
+                            <span class="form-control-feedback" ng-class="{'glyphicon glyphicon-ok':!personForm.nombre.$invalid, 'glyphicon glyphicon-remove':personForm.nombre.$invalid && personForm.nombre.$touched}"></span>
+                        </div>
+                        <p class="help-block">Digite su nombre</p>
+                    </div>
+
+                    <!-- Apellido -->
+                    <div class="form-group" ng-class="{'has-success':!personForm.apellido.$invalid, 'has-error':personForm.apellido.$invalid && personForm.apellido.$touched}">
+                        <label class="control-label" for="cedula">Apellido</label>
+                        <div class="input-group">
+                            <div class="input-group-addon">
+                                <i class="glyphicon glyphicon-user"></i>
+                            </div>
+                            <input class="form-control" name="apellido" type="text" placeholder="Apellido" ng-model="Person.apellido" ng-required="true">
+                            <span class="form-control-feedback" ng-class="{'glyphicon glyphicon-ok':!personForm.apellido.$invalid, 'glyphicon glyphicon-remove':personForm.apellido.$invalid && personForm.apellido.$touched}"></span>
+                        </div>
+                        <p class="help-block">Digite sus apellidos</p>
+                    </div>
+
+                    <!-- Edad -->
+                    <div class="form-group">
+                        <label class="control-label" for="cedula">Edad</label>
+                        <div class="input-group">
+                            <div class="input-group-addon">
+                                <i class="glyphicon glyphicon-plus-sign"></i>
+                            </div>
+                            <input class="form-control" name="edad" type="text" placeholder="Nombre" ng-model="Person.edad">
+                        </div>
+                        <p class="help-block">Digite su edad</p>
+                    </div>
+                    
+                </div>
+
+                <!-- Column 2 -->
+                <div class="col-lg-6">
+                    
+                    <!-- Ciudad de Nacimiento -->
+                    <div class="form-group">
+                        <label class="control-label" for="cedula">Ciudad de Nacimiento</label>
+                        <div class="form-group">
+                            <div class="dropdown">
+                                <button class="btn btn-info" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"> Ciudad de Nacimiento <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                                    <li><a ng-href="#/">Barranquilla</a></li>
+                                    <li><a ng-href="#/">Bogotá</a></li>
+                                    <li><a ng-href="#/">Cali</a></li>
+                                    <li><a ng-href="#/">Manizales</a></li>
+                                    <li role="separator" class="divider"></li>
+                                    <li><a ng-href="#/">Santa Marta</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <p class="help-block">Seleccione su ciudad de nacimiento</p>
+                    </div>
+                    
+                    <!-- Color Favorito -->                    
+                    <div class="form-group">
+                        <label class="control-label" for="cedula">Color favorito</label>
+                        <div class="form-group">
+                            <div class="dropdown">
+                                <button class="btn btn-success" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"> Color Favorito <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                                    <li><a ng-href="#/">Amarillo</a></li>
+                                    <li><a ng-href="#/">Azul</a></li>
+                                    <li><a ng-href="#/">Rojo</a></li>
+                                    <li><a ng-href="#/">Verde</a></li>
+                                    <li role="separator" class="divider"></li>
+                                    <li><a ng-href="#/">Blanco</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <p class="help-block">Seleccione su color favorito</p>
+                    </div>
+                    
+                    <!-- Email -->
+                    <div class="form-group" ng-class="{'has-success':!personForm.email.$invalid, 'has-error':personForm.email.$invalid && personForm.email.$touched}">
+                        <label class="control-label" for="cedula">Email</label>
+                        <div class="input-group">
+                            <div class="input-group-addon">
+                                <i class="glyphicon glyphicon-envelope"></i>
+                            </div>
+                            <input class="form-control" name="email" type="text" placeholder="Correo Electrónico" ng-model="Person.email" ng-required="true" minlength="6" maxlength="20">
+                            <span class="input-group-addon" id="basic-addon2">@carvajal.com</span>
+                        </div>
+                        <p class="help-block">Digite su correo electrónico</p>
+                    </div>
+                    
+                    <!-- Buttons -->
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary btn-lg">
+                          <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Save
+                        </button>
+
+                        <button type="button" class="btn btn-primary btn-lg" ng-click="cleanPerson(personForm)">
+                          <span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Clean
+                        </button>
+                    </div>
+
+                </div>
+                
+            </form>
+            
+        </div>
+        
+    </div>
+    
+</div>
