@@ -30,11 +30,11 @@ function addPersonController($scope, personService) {
             alert("listPersons: " + $scope.listPersons[0].cedula);
         });*/
         
-    }
+    };
     
     $scope.cleanPerson = function(personForm) {
         var userConfirm = confirm("¿Clear Form?");
-        if (userConfirm == true) {
+        if (userConfirm === true) {
             $scope.Person = {};
             personForm.cedula.$touched = false;
             personForm.nombre.$touched = false;
@@ -42,6 +42,6 @@ function addPersonController($scope, personService) {
             personForm.edad.$touched = false;
             personForm.email.$touched = false;
         }
-    }
+    };
 }
 })();

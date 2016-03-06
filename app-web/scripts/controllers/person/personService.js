@@ -35,10 +35,10 @@ function personService($http, $q) {
             deferred.resolve(response);
         })
         .error(function(error) {
-            deferred.reject(error)
-        })
+            deferred.reject(error);
+        });
         return deferred.promise;
-    }
+    };
     
     /**
      * @findAllPersons
@@ -58,10 +58,10 @@ function personService($http, $q) {
             deferred.resolve(response);
         })
         .error(function (error) {
-            deferred.reject(error)
-        })
+            deferred.reject(error);
+        });
         return deferred.promise;
-    }
+    };
     
     return service;
 }
