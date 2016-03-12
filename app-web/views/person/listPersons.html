@@ -17,11 +17,12 @@
                 </ol>
             </div>
         </div>
+        
         <hr>
+        
         <div class="row" ng-controller="ListPersonsCtrl">
-            
-            <!-- Search Panel -->
-            <div class="row">
+            <div>
+                <!-- Search Panel -->
                 <div class="col-md-4">
                     <div class="form-group">
                         <label for="cedulaFilter">Search by Cédula</label>
@@ -33,18 +34,33 @@
                                filter-type="text">
                     </div>
                 </div>
+                <!-- /#Search Panel -->
+
+                <!-- Search Panel -->
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="nombreFilter">Search by Nombre</label>
+                        <input id="nombreFilter" type="text" class="form-control order-search-box"
+                               placeholder="Enter Nombre"
+                               ng-change="gridActions.filter()"
+                               ng-model="nombre"
+                               filter-by="nombre"
+                               filter-type="text">
+                    </div>
+                </div>
+                <!-- /#Search Panel -->
             </div>
-            <!-- /#Search Panel -->
             
             <hr>
+            
             <!-- Controller -->
             <div class="row">
 
-                <!-- Angular Data Grid -->
-                <!-- https://github.com/angular-data-grid/angular-data-grid.github.io -->
-                <div grid-data grid-options="gridOptions" grid-actions="gridActions">
+                <div class="col-md-12">
 
-                    <div class="col-md-12">
+                    <!-- Angular Data Grid -->
+                    <!-- https://github.com/angular-data-grid/angular-data-grid.github.io -->
+                    <div grid-data grid-options="gridOptions" grid-actions="gridActions">
 
                         <!-- Angular Data Grid *** Top Paginator *** -->
                         <div class="row">
@@ -78,6 +94,7 @@
                         </div>
                         <!-- /#Angular Data Grid *** Top Paginator *** -->
 
+                        <!-- Angular Data Grid Table -->
                         <table class="table">
                             <thead>
                                 <tr>
@@ -109,6 +126,7 @@
                                 </tr>
                             </tbody>
                         </table>
+                        <!-- /#Angular Data Grid Table -->
 
                         <!-- Angular Data Grid *** Bottom Paginator *** -->
                         <form class="form-inline pull-right margin-bottom-basic">
