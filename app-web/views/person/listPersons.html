@@ -9,7 +9,7 @@
                 <ol class="breadcrumb">
                     <li>
                         <i class="fa fa-dashboard"></i>  
-                        <a ng-href="#/">Dashboard</a>
+                        <a ng-href="#/">Add Person</a>
                     </li>
                     <li class="active">
                         <i class="fa fa-edit"></i> List Persons
@@ -18,16 +18,16 @@
             </div>
         </div>
         
-        <hr>
-        
-        <div class="row" ng-controller="ListPersonsCtrl">
-            <div>
+        <div class="panel panel-info" ng-controller="ListPersonsCtrl">
+            <!-- Default panel contents -->
+            <div class="panel-heading">Filtros de Búsqueda</div>
+            <div class="panel-body">
                 <!-- Search Panel -->
                 <div class="col-md-4">
                     <div class="form-group">
-                        <label for="cedulaFilter">Search by Cédula</label>
+                        <label for="cedulaFilter">Búsqueda Por Cédula</label>
                         <input id="cedulaFilter" type="text" class="form-control order-search-box"
-                               placeholder="Enter Cédula"
+                               placeholder="Digite el número de cédula"
                                ng-change="gridActions.filter()"
                                ng-model="cedula"
                                filter-by="cedula"
@@ -35,13 +35,12 @@
                     </div>
                 </div>
                 <!-- /#Search Panel -->
-
                 <!-- Search Panel -->
                 <div class="col-md-4">
                     <div class="form-group">
-                        <label for="nombreFilter">Search by Nombre</label>
+                        <label for="nombreFilter">Búsqueda Por Nombre</label>
                         <input id="nombreFilter" type="text" class="form-control order-search-box"
-                               placeholder="Enter Nombre"
+                               placeholder="Digite el nombre"
                                ng-change="gridActions.filter()"
                                ng-model="nombre"
                                filter-by="nombre"
@@ -49,86 +48,55 @@
                     </div>
                 </div>
                 <!-- /#Search Panel -->
+                <!-- Search Panel -->
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="nombreFilter">Búsqueda Por Apellido</label>
+                        <input id="nombreFilter" type="text" class="form-control order-search-box"
+                               placeholder="Digite el apellido"
+                               ng-change="gridActions.filter()"
+                               ng-model="apellido"
+                               filter-by="apellido"
+                               filter-type="text">
+                    </div>
+                </div>
+                <!-- /#Search Panel -->
             </div>
             
-            <hr>
+            <div class="panel-heading">Listado de Personas</div>
+            <div grid-data grid-options="gridOptions" grid-actions="gridActions" class="panel-body">
+                <!-- Angular Data Grid Table -->
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th sortable="item.cedula" class="sortable">Cédula</th>
+                            <th sortable="item.nombre" class="sortable">Nombre</th>
+                            <th sortable="item.apellido" class="sortable">Apellido</th>
+                            <th sortable="item.edad" class="sortable">Edad</th>
+                            <th sortable='item.email' class="sortable">Email</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr grid-item>
+                            <td ng-bind="item.cedula"></td>
+                            <td ng-bind="item.nombre"></td>
+                            <td ng-bind="item.apellido"></td>
+                            <td ng-bind="item.edad"></td>
+                            <td ng-bind="item.email"></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <!-- /#Angular Data Grid Table -->
+            </div>
             
-            <!-- Controller -->
-            <div class="row">
-
-                <div class="col-md-12">
-
-                    <!-- Angular Data Grid -->
-                    <!-- https://github.com/angular-data-grid/angular-data-grid.github.io -->
-                    <div grid-data grid-options="gridOptions" grid-actions="gridActions">
-
-                        <!-- Angular Data Grid *** Top Paginator *** -->
-                        <div class="row">
-                            <div class="col-md-3">
-                                <span class="items">{{filtered.length}} items total</span>
-                            </div>
-                            <div class="col-md-9 text-right">
-                                <form class="form-inline pull-right margin-bottom-basic">
-                                    <div class="form-group">
-                                        <grid-pagination max-size="5"
-                                                         boundary-links="true"
-                                                         class="pagination-sm"
-                                                         total-items="paginationOptions.totalItems"
-                                                         ng-model="paginationOptions.currentPage"
-                                                         ng-change="reloadGrid()"
-                                                         items-per-page="paginationOptions.itemsPerPage">
-                                        </grid-pagination>
-                                    </div>
-                                    <div class="form-group items-per-page">
-                                        <label for="itemsOnPageSelect1">Items per page:</label>
-                                        <select id="itemsOnPageSelect1" class="form-control input-sm" ng-init="paginationOptions.itemsPerPage = '5'" ng-model="paginationOptions.itemsPerPage" ng-change="reloadGrid()">
-                                            <option>5</option>
-                                            <option>10</option>
-                                            <option>25</option>
-                                            <option>50</option>
-                                            <option>75</option>
-                                        </select>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                        <!-- /#Angular Data Grid *** Top Paginator *** -->
-
-                        <!-- Angular Data Grid Table -->
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th sortable="item.cedula" class="sortable">Cédula</th>
-                                    <th sortable="item.nombre" class="sortable">Nombre</th>
-                                    <th sortable="item.apellido" class="sortable">Apellido</th>
-                                    
-                                    <th class="st-sort-disable th-dropdown">
-                                        <select class="form-control width-15"
-                                                filter-by="edad"
-                                                filter-type="select"
-                                                ng-model="edad"
-                                                ng-change="filter()">
-                                            <option value="">All Ages</option>
-                                            <option ng-repeat="option in edadOptions track by option.value" value="{{option.value}}">{{option.text}}</option>
-                                        </select>
-                                    </th>
-                                    
-                                    <th sortable='item.email' class="sortable">Email</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr grid-item>
-                                    <td ng-bind="item.cedula"></td>
-                                    <td ng-bind="item.nombre"></td>
-                                    <td ng-bind="item.apellido"></td>
-                                    <td ng-bind="item.edad"></td>
-                                    <td ng-bind="item.email"></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        <!-- /#Angular Data Grid Table -->
-
-                        <!-- Angular Data Grid *** Bottom Paginator *** -->
+            <div class="panel-heading">Paginación</div>
+            <div class="panel-body">
+                <!-- Angular Data Grid *** Top Paginator *** -->
+                <div class="row">
+                    <div class="col-md-3">
+                        <span class="items">{{filtered.length}} Personas encontradas</span>
+                    </div>
+                    <div class="col-md-9 text-right">
                         <form class="form-inline pull-right margin-bottom-basic">
                             <div class="form-group">
                                 <grid-pagination max-size="5"
@@ -141,8 +109,8 @@
                                 </grid-pagination>
                             </div>
                             <div class="form-group items-per-page">
-                                <label for="itemsOnPageSelect2">Items per page:</label>
-                                <select id="itemsOnPageSelect2" class="form-control input-sm" ng-init="paginationOptions.itemsPerPage = '5'" ng-model="paginationOptions.itemsPerPage" ng-change="reloadGrid()">
+                                <label for="itemsOnPageSelect1">Registros por página:</label>
+                                <select id="itemsOnPageSelect1" class="form-control input-sm" ng-init="paginationOptions.itemsPerPage = '5'" ng-model="paginationOptions.itemsPerPage" ng-change="reloadGrid()">
                                     <option>5</option>
                                     <option>10</option>
                                     <option>25</option>
@@ -151,13 +119,11 @@
                                 </select>
                             </div>
                         </form>
-                        <!-- /#Angular Data Grid *** Bottom Paginator *** -->
                     </div>
                 </div>
-                <!-- /#Angular Data Grid -->
-                <!-- https://github.com/angular-data-grid/angular-data-grid.github.io -->
-                <hr>
+                <!-- /#Angular Data Grid *** Top Paginator *** -->
             </div>
+            
         </div>
     </div>
 </div>

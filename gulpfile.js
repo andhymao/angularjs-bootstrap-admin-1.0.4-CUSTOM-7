@@ -44,7 +44,9 @@ gulp.task('default', ['con-val-min-JS', 'min-IMG', 'min-CSS', 'watch', 'connect'
 * Connect
 */
 gulp.task('connect', function() {
-    connect.server();
+    connect.server({
+        port: 8888
+    });
 });
 
 /*

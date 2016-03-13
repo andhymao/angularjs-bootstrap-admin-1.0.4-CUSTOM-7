@@ -14,7 +14,7 @@ personService.$inject = ['$http', '$q'];
 
 function personService($http, $q) {
     
-    var url = "http://localhost:38075/JEE7RESTServiceProject/webresources/RESTFulServices/";
+    var url = "http://localhost:14221/JEE7RESTServiceProject/webresources/RESTFulServices/";
     var service = {};
     
     /**
