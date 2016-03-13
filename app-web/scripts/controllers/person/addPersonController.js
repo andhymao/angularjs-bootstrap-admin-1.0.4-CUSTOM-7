@@ -18,18 +18,34 @@ function addPersonController($scope, personService) {
     $scope.listPersons = [];
     
     $scope.addPerson = function(Person) {
-        alert("Cédula: " + Person.cedula + ", Nombre: " + Person.nombre + ", Apellido: " + Person.apellido + ", Email: " + Person.email);
         
-        personService.createPerson(Person).then(function(response) {
-            alert("Person Created!!!");
+        BootstrapDialog.confirm({
+            title: 'Información',
+            message: '¿Está seguro de almacenar el registro?',
+            type: BootstrapDialog.TYPE_INFO,
+            closable: false,
+            draggable: false,
+            btnCancelLabel: 'No',
+            btnOKLabel: 'Si',
+            btnOKClass: 'btn-info',
+            callback: function(result) {
+                if (result) {
+                    personService.createPerson(Person).then(function(response) {
+                        BootstrapDialog.alert({
+                            title: 'Perfecto',
+                            message: '¡Información almacenada correctamente!',
+                            type: BootstrapDialog.TYPE_SUCCESS,
+                            closable: true,
+                            draggable: true,
+                            buttonLabel: 'Aceptar',
+                        });
+                    });
+                }
+                else {
+                    /* Empty */
+                }
+            }
         });
-        
-        /*personService.findAllPersons().then(function(response) {
-            $scope.listPersons = response;
-            alert("Ejecute el servicio");
-            alert("listPersons: " + $scope.listPersons[0].cedula);
-        });*/
-        
     };
     
     $scope.cleanPerson = function(personForm) {

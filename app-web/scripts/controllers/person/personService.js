@@ -22,7 +22,7 @@ function personService($http, $q) {
      *
      */
     service.createPerson = function(Person) {
-        
+
         var deferred = $q.defer();
 
         $http({
@@ -31,10 +31,17 @@ function personService($http, $q) {
             data: JSON.stringify(Person)
         })
         .success(function(response) {
-            console.log(response);
             deferred.resolve(response);
         })
         .error(function(error) {
+            BootstrapDialog.alert({
+                title: 'Error',
+                message: '¡Error interno del sistema almacenando la información!',
+                type: BootstrapDialog.TYPE_DANGER,
+                closable: false,
+                draggable: false,
+                buttonLabel: 'Aceptar',
+            });
             deferred.reject(error);
         });
         return deferred.promise;
@@ -54,10 +61,17 @@ function personService($http, $q) {
             dataType: 'json'
         })
         .success(function(response) {
-            console.log(response);
             deferred.resolve(response);
         })
-        .error(function (error) {
+        .error(function(error) {
+            BootstrapDialog.alert({
+                title: 'Error',
+                message: '¡Error interno del sistema consultando la información!',
+                type: BootstrapDialog.TYPE_DANGER,
+                closable: false,
+                draggable: false,
+                buttonLabel: 'Aceptar',
+            });
             deferred.reject(error);
         });
         return deferred.promise;
